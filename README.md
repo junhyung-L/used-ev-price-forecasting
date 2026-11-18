@@ -13,6 +13,11 @@ predicts capacity before the price model sees it.
 **Result.** DACON leaderboard score 0.919 (normalized RMSE, root mean squared
 error; lower is better).
 
+**Scope.** One leaderboard score; whether the notebook or the CLI produced it
+is unknown, and no holdout result is stored. DACON data not included; with it,
+`python src\ev_price_prediction_xgb.py --train-csv data\train.csv --test-csv data\test.csv`
+writes holdout and median-baseline RMSE to `results/metrics.json`.
+
 [한국어](README.ko.md) · [Case study](PORTFOLIO.md) · [Notebook](notebooks/EV_price_prediction_xgb.ipynb)
 
 ## Data

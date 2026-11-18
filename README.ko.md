@@ -6,6 +6,8 @@
 
 **결과.** DACON 리더보드 점수 0.919(정규화 RMSE, 평균 제곱근 오차. 낮을수록 좋음).
 
+**범위.** 리더보드 점수 하나이며, 노트북과 CLI 중 어느 쪽이 이 점수를 냈는지 알 수 없고 저장된 holdout 결과도 없습니다. DACON 데이터는 포함되어 있지 않으며, 데이터를 넣으면 `python src\ev_price_prediction_xgb.py --train-csv data\train.csv --test-csv data\test.csv`로 holdout RMSE와 중앙값 기준선 RMSE를 `results/metrics.json`에 기록할 수 있습니다.
+
 [English](README.md) · [사례 연구](PORTFOLIO.ko.md) · [노트북](notebooks/EV_price_prediction_xgb.ipynb)
 
 ## 데이터
