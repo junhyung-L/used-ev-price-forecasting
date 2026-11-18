@@ -1,0 +1,8 @@
+# Minimum versions are the ones installed when this file was checked (Python 3.13.2).
+# CLI: src/ev_price_prediction_xgb.py
+pandas>=3.0
+scikit-learn>=1.6
+xgboost>=3.3
+# Notebook only: notebooks/EV_price_prediction_xgb.ipynb
+numpy>=2.4
+scipy>=1.17

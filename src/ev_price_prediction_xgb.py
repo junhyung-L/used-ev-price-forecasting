@@ -95,6 +95,8 @@ def run(train_path: Path, test_path: Path, output_path: Path, metrics_path: Path
     model = Pipeline([("preprocessor", make_preprocessor(X_train)), ("regressor", XGBRegressor(**params))])
     model.fit(X_train, y_train)
     rmse = mean_squared_error(y_valid, model.predict(X_valid)) ** 0.5
+    # Reference point: predict the development-partition median price for every holdout row.
+    baseline_rmse = mean_squared_error(y_valid, pd.Series(y_train.median(), index=y_valid.index)) ** 0.5
     full_train, full_test = impute_battery(train.copy(), test.copy())
     full_train, full_test = add_features(full_train), add_features(full_test)
     final_features = [column for column in full_test.columns if column != ID_COLUMN and column in full_train.columns and column != TARGET]
@@ -103,7 +105,7 @@ def run(train_path: Path, test_path: Path, output_path: Path, metrics_path: Path
     output_path.parent.mkdir(parents=True, exist_ok=True)
     pd.DataFrame({ID_COLUMN: full_test[ID_COLUMN], TARGET: final_model.predict(full_test[final_features])}).to_csv(output_path, index=False)
     metrics_path.parent.mkdir(parents=True, exist_ok=True)
-    metrics_path.write_text(json.dumps({"validation_rmse": rmse, "split": "single 80/20 random holdout", "random_seed": RANDOM_SEED}, indent=2), encoding="utf-8")
+    metrics_path.write_text(json.dumps({"validation_rmse": rmse, "baseline_median_rmse": baseline_rmse, "split": "single 80/20 random holdout", "random_seed": RANDOM_SEED}, indent=2), encoding="utf-8")
     return rmse
 
 
