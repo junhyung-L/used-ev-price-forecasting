@@ -6,6 +6,8 @@
 
 **결과.** DACON 리더보드 점수 0.919(정규화 RMSE, 평균 제곱근 오차. 낮을수록 좋음).
 
+**역할.** 이 저장소의 코드·분석·문서를 직접 작성했습니다.
+
 **범위.** 리더보드 점수 하나이며, 노트북과 CLI 중 어느 쪽이 이 점수를 냈는지 알 수 없고 저장된 holdout 결과도 없습니다. DACON 데이터는 포함되어 있지 않으며, 데이터를 넣으면 `python src\ev_price_prediction_xgb.py --train-csv data\train.csv --test-csv data\test.csv`로 holdout RMSE와 중앙값 기준선 RMSE를 `results/metrics.json`에 기록할 수 있습니다.
 
 [English](README.md) · [사례 연구](PORTFOLIO.ko.md) · [노트북](notebooks/EV_price_prediction_xgb.ipynb)
@@ -46,12 +48,13 @@ DACON 데이터를 넣고 CLI를 실행하면 80/20 holdout RMSE와 개발 분�
 
 ```powershell
 pip install -r requirements.txt
+python scripts/smoke_test.py          # 합성 데이터 종단 점검, 데이터 불필요
 python src\ev_price_prediction_xgb.py `
   --train-csv data\train.csv `
   --test-csv data\test.csv
 ```
 
-DACON 파일을 `data/`에 두면 이 명령이 holdout RMSE를 출력하고 `results/metrics.json`(holdout RMSE, 중앙값 기준선 RMSE, 분할 방식, seed)을 쓴 뒤, 학습 데이터 전체로 다시 학습해 `results/submission.csv`를 만듭니다. `ev_pricing_pipeline.py`는 같은 인자를 받는 얇은 래퍼입니다. `requirements.txt`는 2026-11 점검 환경(Python 3.13.2) 버전으로 고정했으며, 대회 노트북은 Python 3.12.4에서 실행했고 당시 패키지 버전은 기록되지 않았습니다.
+DACON 파일을 `data/`에 두면 이 명령이 holdout RMSE를 출력하고 `results/metrics.json`(holdout RMSE, 중앙값 기준선 RMSE, 분할 방식, seed)을 쓴 뒤, 학습 데이터 전체로 다시 학습해 `results/submission.csv`를 만듭니다. `ev_pricing_pipeline.py`는 같은 인자를 받는 얇은 래퍼입니다. `scripts/smoke_test.py`는 임시 폴더의 작은 합성 CSV로 CLI를 실행해 `metrics.json`에 holdout RMSE와 중앙값 기준선 RMSE가 있는지 확인하며, 그 수치는 합성 데이터 값이지 결과가 아닙니다. `requirements.txt`는 2026-11 점검 환경(Python 3.13.2) 버전으로 고정했으며, 대회 노트북은 Python 3.12.4에서 실행했고 당시 패키지 버전은 기록되지 않았습니다.
 
 ## 한계
 
@@ -66,6 +69,7 @@ DACON 파일을 `data/`에 두면 이 명령이 holdout RMSE를 출력하고 `re
 src/ev_price_prediction_xgb.py   CLI: 대체, 피처, holdout, 제출
 src/config.py                    경로(EV_PRICE_* 환경 변수로 변경 가능), seed, 분할 비율
 ev_pricing_pipeline.py           래퍼 진입점
+scripts/smoke_test.py            CLI 합성 데이터 종단 점검
 notebooks/                       출력이 저장된 대회 당시 노트북
 data/data                        DACON 데이터 페이지 링크
 ```
@@ -73,3 +77,7 @@ data/data                        DACON 데이터 페이지 링크
 ## 문서
 
 - [포트폴리오 사례 연구](PORTFOLIO.ko.md)
+
+## 라이선스
+
+오픈소스 라이선스 없음: 코드와 문서는 열람용으로 공개하며, 재사용하려면 허락이 필요합니다.

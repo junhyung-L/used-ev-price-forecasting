@@ -13,6 +13,8 @@ predicts capacity before the price model sees it.
 **Result.** DACON leaderboard score 0.919 (normalized RMSE, root mean squared
 error; lower is better).
 
+**Role.** I wrote the code, analysis, and documentation in this repository.
+
 **Scope.** One leaderboard score; whether the notebook or the CLI produced it
 is unknown, and no holdout result is stored. DACON data not included; with it,
 `python src\ev_price_prediction_xgb.py --train-csv data\train.csv --test-csv data\test.csv`
@@ -73,6 +75,7 @@ development-partition median-price baseline to `results/metrics.json`.
 
 ```powershell
 pip install -r requirements.txt
+python scripts/smoke_test.py          # synthetic end-to-end check, no data needed
 python src\ev_price_prediction_xgb.py `
   --train-csv data\train.csv `
   --test-csv data\test.csv
@@ -82,6 +85,9 @@ With the DACON files in `data/`, the command prints the holdout RMSE,
 writes `results/metrics.json` (holdout RMSE, median-baseline RMSE, split, seed),
 then retrains on all training rows and writes `results/submission.csv`.
 `ev_pricing_pipeline.py` is a thin wrapper with the same arguments.
+`scripts/smoke_test.py` runs the CLI on small synthetic CSVs in a temporary
+folder and checks that `metrics.json` holds the holdout and median-baseline
+RMSE; its numbers are synthetic, not results.
 `requirements.txt` pins the 2026-11 review environment (Python 3.13.2); the
 competition notebook ran on Python 3.12.4 with unrecorded package versions.
 
@@ -98,6 +104,7 @@ competition notebook ran on Python 3.12.4 with unrecorded package versions.
 src/ev_price_prediction_xgb.py   CLI: imputation, features, holdout, submission
 src/config.py                    paths (overridable by EV_PRICE_* env vars), seed, split size
 ev_pricing_pipeline.py           wrapper entry point
+scripts/smoke_test.py            synthetic end-to-end check of the CLI
 notebooks/                       competition-era notebook with saved outputs
 data/data                        link to the DACON data page
 ```
@@ -105,3 +112,7 @@ data/data                        link to the DACON data page
 ## Documentation
 
 - [Portfolio case study](PORTFOLIO.md)
+
+## License
+
+No open-source license: the code and documents are public for review; reuse requires permission.
