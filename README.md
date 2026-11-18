@@ -82,6 +82,8 @@ With the DACON files in `data/`, the command prints the holdout RMSE,
 writes `results/metrics.json` (holdout RMSE, median-baseline RMSE, split, seed),
 then retrains on all training rows and writes `results/submission.csv`.
 `ev_pricing_pipeline.py` is a thin wrapper with the same arguments.
+`requirements.txt` pins the 2026-11 review environment (Python 3.13.2); the
+competition notebook ran on Python 3.12.4 with unrecorded package versions.
 
 ## Limitations
 

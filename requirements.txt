@@ -1,8 +1,9 @@
-# Minimum versions are the ones installed when this file was checked (Python 3.13.2).
+# Pinned to the environment used for the 2026-11 review; original run versions were not recorded.
+# Python 3.13.2. The competition notebook ran on Python 3.12.4 (notebook metadata).
 # CLI: src/ev_price_prediction_xgb.py
-pandas>=3.0
-scikit-learn>=1.6
-xgboost>=3.3
+pandas==3.0.1
+scikit-learn==1.6.1
+xgboost==3.3.0
 # Notebook only: notebooks/EV_price_prediction_xgb.ipynb
-numpy>=2.4
-scipy>=1.17
+numpy==2.4.2
+scipy==1.17.1

@@ -51,7 +51,7 @@ python src\ev_price_prediction_xgb.py `
   --test-csv data\test.csv
 ```
 
-DACON 파일을 `data/`에 두면 이 명령이 holdout RMSE를 출력하고 `results/metrics.json`(holdout RMSE, 중앙값 기준선 RMSE, 분할 방식, seed)을 쓴 뒤, 학습 데이터 전체로 다시 학습해 `results/submission.csv`를 만듭니다. `ev_pricing_pipeline.py`는 같은 인자를 받는 얇은 래퍼입니다.
+DACON 파일을 `data/`에 두면 이 명령이 holdout RMSE를 출력하고 `results/metrics.json`(holdout RMSE, 중앙값 기준선 RMSE, 분할 방식, seed)을 쓴 뒤, 학습 데이터 전체로 다시 학습해 `results/submission.csv`를 만듭니다. `ev_pricing_pipeline.py`는 같은 인자를 받는 얇은 래퍼입니다. `requirements.txt`는 2026-11 점검 환경(Python 3.13.2) 버전으로 고정했으며, 대회 노트북은 Python 3.12.4에서 실행했고 당시 패키지 버전은 기록되지 않았습니다.
 
 ## 한계
 
